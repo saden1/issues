@@ -1,0 +1,16 @@
+{
+    "type": "record",
+    "namespace": "com.github.saden1.issues.mapdb.model",
+    "name": "User",
+    "doc": "User Bean",
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "age",
+            "type": "int"
+        }
+    ]
+}
