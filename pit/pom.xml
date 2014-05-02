@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.saden1</groupId>
+    <artifactId>pit</artifactId>        
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <compilerArgs>
+                        <!-- 
+                            Stores formal parameter names of constructors and 
+                            methods in the generated class file so that the 
+                            method java.lang.reflect.Executable.getParameters 
+                            from the Reflection API can retrieve them.
+                        -->
+                        <arg>-parameters</arg>
+                        <arg>-g:lines,vars,source</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>0.33</version>
+                <executions>
+                    <execution>
+                        <id>pit-report</id>
+                        <goals>
+                            <goal>mutationCoverage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <verbose>true</verbose>
+                    <targetClasses>
+                        <param>com.github.saden1*</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>com.github.saden1*</param>
+                    </targetTests>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
